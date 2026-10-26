@@ -56,8 +56,8 @@ button{background:#245a87;color:white;border:0;border-radius:5px;padding:10px 12
 <main>
 <section class="panel formulario">
 <h2>Dados da perícia</h2>
-<label>Nome da pessoa examinada</label>
-<input id="nome" oninput="atualizar()">
+<label> da pessoa examinada</label>
+<input id="" oninput="atualizar()">
 
 <label>Unidade de origem</label>
 <input id="unidade" list="unidades" placeholder="Ex.: PRT 21ª Região, PGT, PRT 18ª Região" oninput="atualizar()">
@@ -101,10 +101,10 @@ button{background:#245a87;color:white;border:0;border-radius:5px;padding:10px 12
 <textarea id="obs" oninput="atualizar()"></textarea>
 
 <label>Nome do médico perito</label>
-<input id="medico" oninput="atualizar()">
+<input id="medico" value="Roberto Moreno Mendonça" readonly>
 
 <label>CRM / UF</label>
-<input id="crm" placeholder="CRM-UF" oninput="atualizar()">
+<input id="crm" value="6.266 - RN" readonly>
 
 <div>
 <button onclick="window.print()">Imprimir / Salvar PDF</button>
@@ -135,8 +135,11 @@ button{background:#245a87;color:white;border:0;border-radius:5px;padding:10px 12
 <div class="secao" id="secao-obs"><h3>Observações adicionais</h3><p id="p-obs">—</p></div>
 <div class="assinatura">
 <p>________________________________________</p>
-<p><b id="p-medico">Médico Perito</b></p>
-<p>CRM: <span id="p-crm">—</span></p>
+<p><b id="p-medico">Roberto Moreno</b></p>
+<p>Analista Médico - Perito</p>
+<p>MPU / MPT - PRT21ª Região</p>
+<p>Matrícula: 6.005.167-1</p>
+<p>CRM-RN: <span id="p-crm">6.266</span></p>
 <p>Assinatura eletrônica a ser aplicada separadamente.</p>
 </div>
 <div class="paginas">Pág. 1/1</div>
@@ -165,8 +168,13 @@ function atualizar(){
 }
 function limpar(){
  if(confirm("Limpar todos os campos?")){
-  ids.forEach(id=>document.getElementById(id).value="");
+  ids.filter(id=>id!=="medico" && id!=="crm")
+     .forEach(id=>document.getElementById(id).value="");
+
+  document.getElementById("medico").value="Roberto Moreno";
+  document.getElementById("crm").value="6.266 - RN";
   document.getElementById("resultado").value="Homologada";
+
   atualizar();
  }
 }
