@@ -3,642 +3,342 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Perícias Médicas — MPT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laudo de Perícia Médica Singular - MPT/PRT21</title>
 
 <style>
-* { box-sizing: border-box; }
+  * { box-sizing: border-box; }
 
-body {
-  font: 14px Arial, sans-serif;
-  color: #222;
-  background: #f2f5f9;
-  margin: 0;
-}
-
-header {
-  background: #17365d;
-  color: white;
-  padding: 18px;
-  text-align: center;
-}
-
-header h1 { margin: 0 0 8px; }
-header p { margin: 0; }
-
-main {
-  max-width: 1100px;
-  margin: 22px auto;
-  padding: 0 14px;
-  display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(300px, 1fr);
-  gap: 18px;
-  align-items: start;
-}
-
-.panel {
-  min-width: 0;
-  background: white;
-  border: 1px solid #d5dde7;
-  border-radius: 10px;
-  padding: 18px;
-}
-
-h2 {
-  color: #17365d;
-  font-size: 19px;
-  margin: 0 0 14px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  font-size: 12px;
-  margin: 10px 0 4px;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 9px;
-  border: 1px solid #bac7d5;
-  border-radius: 5px;
-  font: inherit;
-  background: white;
-  color: #222;
-}
-
-input[readonly] {
-  background: #edf1f5;
-  color: #344054;
-}
-
-textarea {
-  min-height: 75px;
-  resize: vertical;
-}
-
-button {
-  background: #245a87;
-  color: white;
-  border: 0;
-  border-radius: 5px;
-  padding: 10px 12px;
-  cursor: pointer;
-  margin: 10px 5px 0 0;
-  font-size: 13px;
-}
-
-button:hover { opacity: .9; }
-
-.secondary {
-  background: #e6edf5;
-  color: #17365d;
-}
-
-#documento {
-  width: 100%;
-  padding: 22px;
-  background: white;
-  border: 1px solid #ddd;
-  font-size: 12px;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-
-.cabecalho {
-  text-align: center;
-  border-bottom: 2px solid #17365d;
-  padding-bottom: 9px;
-  margin-bottom: 15px;
-}
-
-.logo {
-  width: 76px;
-  height: auto;
-  max-height: 65px;
-  object-fit: contain;
-}
-
-.cabecalho p {
-  margin: 5px 0 0;
-  font-size: 11px;
-}
-
-.titulo {
-  text-align: center;
-  font-weight: bold;
-  margin: 18px 0;
-  font-size: 14px;
-}
-
-.linha {
-  margin: 8px 0;
-  overflow-wrap: anywhere;
-}
-
-.status {
-  text-align: center;
-  font-weight: bold;
-  border: 1px solid #aaa;
-  padding: 7px;
-  margin: 12px 0;
-}
-
-.secao { margin-top: 15px; }
-
-.secao h3 {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #17365d;
-  margin-bottom: 5px;
-}
-
-.secao p {
-  white-space: pre-wrap;
-  margin-top: 5px;
-  min-height: 14px;
-}
-
-/* Identificação do perito */
-.assinatura {
-  text-align: center;
-  margin-top: 32px;
-  font-size: 11px;
-  break-inside: avoid;
-}
-
-.assinatura-nome {
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 1.2;
-  margin: 4px 0 3px;
-}
-
-.assinatura-dados {
-  font-size: 8pt;
-  line-height: 1.1;
-  margin: 1px 0;
-}
-
-.assinatura-aviso {
-  font-size: 8pt;
-  line-height: 1.1;
-  margin: 5px 0 0;
-}
-
-.rodape {
-  text-align: center;
-  color: #666;
-  font-size: 11px;
-  margin: 20px;
-}
-
-.instrucoes {
-  color: #555;
-  font-size: 12px;
-}
-
-@media (max-width: 800px) {
-  main { grid-template-columns: 1fr; }
-}
-
-@page {
-  size: A4 portrait;
-  margin: 12mm;
-}
-
-@media print {
-  html, body {
-    background: white !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
+  body {
+    margin: 0;
+    padding: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #20252b;
+    background: #f1f4f8;
+    font-size: 14px;
   }
 
-  body * {
-    visibility: hidden !important;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  #documento, #documento * {
-    visibility: visible !important;
+  h1 {
+    margin: 0 0 8px;
+    color: #173b63;
+    font-size: 25px;
   }
 
+  .subtitulo {
+    margin: 0 0 24px;
+    color: #5d6875;
+    line-height: 1.5;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.95fr) minmax(400px, 1.05fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .painel {
+    background: #fff;
+    border: 1px solid #dce2e9;
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 2px 8px rgba(20, 40, 60, 0.05);
+  }
+
+  .painel h2 {
+    margin: 0 0 18px;
+    color: #173b63;
+    font-size: 19px;
+  }
+
+  .campo {
+    margin-bottom: 14px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  input, select, textarea {
+    display: block;
+    width: 100%;
+    padding: 10px 11px;
+    border: 1px solid #cbd4df;
+    border-radius: 6px;
+    background: #fff;
+    color: #20252b;
+    font: inherit;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid #b7d4f2;
+    border-color: #326da8;
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.45;
+  }
+
+  .linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .ajuda {
+    margin: 5px 0 0;
+    color: #66717e;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 20px;
+  }
+
+  button {
+    border: 0;
+    border-radius: 6px;
+    padding: 11px 15px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .primario {
+    color: #fff;
+    background: #174a7e;
+  }
+
+  .secundario {
+    color: #173b63;
+    background: #e6edf5;
+  }
+
+  button:hover { filter: brightness(0.96); }
+
+  .aviso {
+    margin-top: 18px;
+    padding: 11px 12px;
+    border-radius: 6px;
+    background: #f2f6fa;
+    color: #536273;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* Documento de prévia */
   #documento {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    background: white !important;
-    color: black !important;
-    font-size: 10pt !important;
-    overflow: visible !important;
+    background: #fff;
+    color: #111;
+    padding: 32px 34px;
+    border: 1px solid #dce2e9;
+    box-shadow: 0 2px 8px rgba(20, 40, 60, 0.05);
+    min-height: 760px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    line-height: 1.35;
   }
 
-  #documento .cabecalho {
-    padding-bottom: 6px;
-    margin-bottom: 10px;
-    border-color: #333;
+  .cabecalho {
+    text-align: center;
+    margin-bottom: 22px;
   }
 
-  #documento .logo {
-    width: 60px;
-    max-height: 50px;
+  .logo {
+    display: block;
+    max-width: 115px;
+    max-height: 65px;
+    object-fit: contain;
+    margin: 0 auto 10px;
   }
 
-  #documento .linha {
-    margin: 6px 0;
+  .orgao {
+    font-weight: 700;
+    font-size: 11pt;
+    text-transform: uppercase;
+    margin: 0;
   }
 
-  #documento .secao {
-    margin-top: 12px;
+  .titulo-documento {
+    font-size: 13pt;
+    font-weight: 700;
+    text-align: center;
+    margin: 22px 0 20px;
+    text-transform: uppercase;
   }
 
-  #documento .assinatura {
-    margin-top: 28px;
-    break-inside: avoid;
+  .identificacao {
+    margin-bottom: 17px;
   }
 
-  #documento .assinatura-nome {
-    font-size: 11pt !important;
-    font-weight: bold !important;
-    line-height: 1.2 !important;
-    margin: 4px 0 3px !important;
+  .identificacao p {
+    margin: 4px 0;
+    overflow-wrap: anywhere;
   }
 
-  #documento .assinatura-dados {
-    font-size: 8pt !important;
-    line-height: 1.1 !important;
-    margin: 1px 0 !important;
+  .rotulo {
+    font-weight: 700;
   }
 
-  #documento .assinatura-aviso {
-    font-size: 8pt !important;
-    line-height: 1.1 !important;
-    margin: 5px 0 0 !important;
+  .status {
+    margin: 17px 0;
+    padding: 10px;
+    border: 1px solid #999;
+    text-align: center;
+    font-weight: 700;
+    font-size: 11pt;
+    overflow-wrap: anywhere;
   }
 
-  #documento .status {
-    color: black;
-    border-color: #777;
+  .secao {
+    margin-top: 15px;
+    page-break-inside: avoid;
   }
 
-  #documento .secao h3 {
-    color: black;
+  .secao-titulo {
+    font-weight: 700;
+    margin: 0 0 5px;
   }
 
-  #documento .paginas {
-    display: none !important;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1>Perícias Médicas — MPT</h1>
-  <p>Gerador de Relatório de Perícia Médica Singular</p>
-</header>
-
-<main>
-
-<section class="panel formulario">
-  <h2>Dados da perícia</h2>
-
-  <label for="nome">Servidor / Membro periciado</label>
-  <input id="nome" autocomplete="off">
-
-  <label for="matricula">Matrícula / identificador funcional</label>
-  <input id="matricula" autocomplete="off">
-
-  <label for="unidade">Unidade de origem</label>
-  <input id="unidade" list="unidades"
-         placeholder="Ex.: PRT 21ª Região, PGT">
-  <datalist id="unidades">
-    <option value="PRT 21ª Região">
-    <option value="PGT">
-    <option value="PRT 18ª Região">
-    <option value="Outra">
-  </datalist>
-
-  <label for="processo">Processo administrativo</label>
-  <input id="processo" autocomplete="off">
-
-  <label for="data">Data da avaliação médica pericial</label>
-  <input id="data" type="date">
-
-  <label for="tipo">Tipo de afastamento</label>
-  <select id="tipo">
-    <option value="">Selecione...</option>
-    <option>Licença para tratamento de Saúde (art. 202 da Lei nº 8.112/90 e art. 223, inciso I, da Lei Complementar nº 75/93)</option>
-    <option>Licença por acidente em serviço (art. 211 e seguintes da Lei nº 8.112/90 e art. 223, inciso II, da Lei Complementar nº 75/93)</option>
-    <option>Licença para tratamento de pessoa da família (art. 83 da Lei nº 8.112/90 e art. 222, § 1º, da Lei Complementar nº 75/93)</option>
-  </select>
-
-  <label for="resultado">Resultado</label>
-  <select id="resultado">
-    <option>Homologada</option>
-    <option>Não homologada</option>
-  </select>
-
-  <label for="inicio">Início do período homologado</label>
-  <input id="inicio" type="date">
-
-  <label for="fim">Fim do período homologado</label>
-  <input id="fim" type="date">
-
-  <label for="conclusao">Conclusão pericial</label>
-  <textarea id="conclusao"></textarea>
-
-  <label for="obs">Observações adicionais</label>
-  <textarea id="obs"></textarea>
-
-  <label for="medico">Perito responsável</label>
-  <input id="medico" value="Roberto Moreno Mendonça" readonly>
-
-  <label for="crm">Registro profissional</label>
-  <input id="crm" value="6.266 - RN" readonly>
-
-  <label for="perito-matricula">Matrícula funcional do perito</label>
-  <input id="perito-matricula" value="6.005.167-1" readonly>
-
-  <label for="cargo">Cargo / função</label>
-  <input id="cargo" value="Analista Médico - Perito" readonly>
-
-  <label for="orgao">Órgão</label>
-  <input id="orgao" value="MPU / MPT - PRT21ª Região" readonly>
-
-  <div>
-    <button type="button" id="btn-imprimir">Imprimir / Salvar PDF</button>
-    <button type="button" class="secondary" id="btn-word">Baixar Word</button>
-    <button type="button" class="secondary" id="btn-limpar">Limpar formulário</button>
-  </div>
-
-  <p class="instrucoes">
-    Para assinar o PDF, utilize uma ferramenta de assinatura compatível
-    com o SERPROID. Esta página não realiza a assinatura digital.
-  </p>
-
-  <p>
-    <a href="https://mpt.mp.br/logo.png" target="_blank" rel="noopener">Logo do MPT</a>
-    ·
-    <a href="https://serproid.serpro.gov.br/" target="_blank" rel="noopener">SERPROID</a>
-  </p>
-</section>
-
-<section class="panel">
-  <h2 class="instrucoes">Pré-visualização do relatório</h2>
-
-  <article id="documento">
-    <div class="cabecalho">
-      <img class="logo"
-           src="https://mpt.mp.br/logo.png"
-           alt="Logo do MPT">
-      <p><b>PROCURADORIA REGIONAL DO TRABALHO DA 21ª REGIÃO</b></p>
-    </div>
-
-    <div class="titulo">RELATÓRIO DE PERÍCIA MÉDICA SINGULAR</div>
-
-    <div class="linha">
-      <b>Servidor / Membro periciado:</b>
-      <span id="p-nome">—</span>
-    </div>
-
-    <div class="linha">
-      <b>Matrícula:</b>
-      <span id="p-matricula">—</span>
-    </div>
-
-    <div class="linha">
-      <b>Unidade de origem:</b>
-      <span id="p-unidade">—</span>
-    </div>
-
-    <div class="linha">
-      <b>Processo administrativo:</b>
-      <span id="p-processo">—</span>
-    </div>
-
-    <div class="linha">
-      <b>Data da avaliação médica pericial:</b>
-      <span id="p-data">—</span>
-    </div>
-
-    <div class="status" id="p-resultado">HOMOLOGADA</div>
-
-    <div class="linha">
-      <b>Tipo de afastamento:</b>
-      <span id="p-tipo">—</span>
-    </div>
-
-    <div class="linha">
-      <b>Período homologado:</b>
-      <span id="p-periodo">Não informado</span>
-    </div>
-
-    <div class="secao">
-      <h3>Conclusão pericial</h3>
-      <p id="p-conclusao">—</p>
-    </div>
-
-    <div class="secao" id="secao-obs">
-      <h3>Observações adicionais</h3>
-      <p id="p-obs">—</p>
-    </div>
-
-    <div class="assinatura">
-      <p>________________________________________</p>
-
-      <p class="assinatura-nome" id="p-medico">
-        Roberto Moreno Mendonça
-      </p>
-
-      <p class="assinatura-dados" id="p-cargo">
-        Analista Médico - Perito
-      </p>
-
-      <p class="assinatura-dados" id="p-orgao">
-        MPU / MPT - PRT21ª Região
-      </p>
-
-      <p class="assinatura-dados">
-        Matrícula: <span id="p-perito-matricula">6.005.167-1</span>
-      </p>
-
-      <p class="assinatura-dados">
-        CRM-RN: <span id="p-crm">6.266</span>
-      </p>
-
-      <p class="assinatura-aviso">
-        Assinatura eletrônica a ser aplicada separadamente.
-      </p>
-    </div>
-  </article>
-</section>
-
-</main>
-
-<p class="rodape">
-  Protótipo de apoio. Validar a redação e o uso institucional antes
-  de utilizar em perícias reais.
-</p>
-
-<script>
-"use strict";
-
-const idsFormulario = [
-  "nome", "matricula", "unidade", "processo", "data",
-  "tipo", "resultado", "inicio", "fim", "conclusao", "obs"
-];
-
-function campo(id) {
-  return document.getElementById(id);
-}
-
-function valor(id) {
-  const el = campo(id);
-  return el ? el.value.trim() : "";
-}
-
-function escrever(id, texto) {
-  const el = campo(id);
-  if (el) {
-    el.textContent = texto || "—";
-  }
-}
-
-function dataBR(valorData) {
-  if (!valorData) return "";
-
-  const partes = valorData.split("-");
-  if (partes.length !== 3) return valorData;
-
-  return partes[2] + "/" + partes[1] + "/" + partes[0];
-}
-
-function atualizar() {
-  escrever("p-nome", valor("nome"));
-  escrever("p-matricula", valor("matricula"));
-  escrever("p-unidade", valor("unidade"));
-  escrever("p-processo", valor("processo"));
-  escrever("p-data", dataBR(valor("data")));
-  escrever("p-tipo", valor("tipo"));
-  escrever("p-conclusao", valor("conclusao"));
-  escrever("p-obs", valor("obs"));
-
-  escrever("p-medico", "Roberto Moreno Mendonça");
-  escrever("p-crm", "6.266");
-  escrever("p-perito-matricula", "6.005.167-1");
-  escrever("p-cargo", "Analista Médico - Perito");
-  escrever("p-orgao", "MPU / MPT - PRT21ª Região");
-
-  const resultado = valor("resultado") || "Homologada";
-  escrever("p-resultado", resultado.toUpperCase());
-
-  const inicio = dataBR(valor("inicio"));
-  const fim = dataBR(valor("fim"));
-
-  let periodo = "Não informado";
-
-  if (resultado === "Não homologada") {
-    periodo = "Não se aplica";
-  } else if (inicio || fim) {
-    periodo = (inicio || "—") + " a " + (fim || "—");
+  .secao-conteudo {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
 
-  escrever("p-periodo", periodo);
-
-  const secaoObs = campo("secao-obs");
-  if (secaoObs) {
-    secaoObs.style.display = valor("obs") ? "" : "none";
-  }
-}
-
-function limpar() {
-  if (!confirm("Limpar os dados desta perícia?")) return;
-
-  idsFormulario.forEach(function(id) {
-    const el = campo(id);
-    if (el) el.value = "";
-  });
-
-  if (campo("resultado")) {
-    campo("resultado").value = "Homologada";
+  .assinatura {
+    margin-top: 34px;
+    text-align: center;
+    page-break-inside: avoid;
   }
 
-  atualizar();
-}
-
-function imprimirPDF() {
-  atualizar();
-  window.print();
-}
-
-function baixarWord() {
-  atualizar();
-
-  const documento = campo("documento");
-
-  if (!documento) {
-    alert("Não foi possível localizar o relatório.");
-    return;
+  .assinatura-nome {
+    margin: 0 0 2px;
+    font-size: 11pt;
+    font-weight: 700;
   }
 
-  const estilos = `
-    body {
-      font-family: Arial, sans-serif;
-      color: #222;
-      font-size: 11pt;
+  .assinatura-dados {
+    margin: 1px 0;
+    font-size: 8pt;
+    line-height: 1.1;
+  }
+
+  .assinatura-aviso {
+    margin: 10px 0 0;
+    font-size: 8pt;
+    line-height: 1.1;
+  }
+
+  .rodape {
+    margin-top: 22px;
+    text-align: center;
+    color: #555;
+    font-size: 8pt;
+  }
+
+  @media (max-width: 900px) {
+    body { padding: 12px; }
+
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    #documento {
+      padding: 24px 20px;
+    }
+  }
+
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+
+  @media print {
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #fff !important;
+      color: #000 !important;
+      font-size: 10pt;
+    }
+
+    body * {
+      visibility: hidden;
+    }
+
+    #documento, #documento * {
+      visibility: visible;
+    }
+
+    #documento {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+      font-size: 10pt;
+      line-height: 1.25;
     }
 
     .cabecalho {
-      text-align: center;
-      border-bottom: 2px solid #17365d;
-      padding-bottom: 8px;
+      margin-bottom: 14px;
     }
 
-    .logo { width: 65px; }
-
-    .titulo {
-      text-align: center;
-      font-weight: bold;
-      margin: 18px 0;
+    .logo {
+      max-width: 90px;
+      max-height: 48px;
+      margin-bottom: 6px;
     }
 
-    .linha { margin: 8px 0; }
+    .titulo-documento {
+      font-size: 12pt;
+      margin: 14px 0;
+    }
+
+    .identificacao {
+      margin-bottom: 10px;
+    }
+
+    .identificacao p {
+      margin: 3px 0;
+    }
 
     .status {
-      text-align: center;
-      font-weight: bold;
-      border: 1px solid #aaa;
+      margin: 10px 0;
       padding: 7px;
-      margin: 12px 0;
-    }
-
-    .secao { margin-top: 14px; }
-
-    .secao h3 {
       font-size: 10pt;
-      text-transform: uppercase;
     }
 
-    .secao p { white-space: pre-wrap; }
+    .secao {
+      margin-top: 10px;
+    }
 
     .assinatura {
-      text-align: center;
-      margin-top: 28px;
-      font-size: 11pt;
+      margin-top: 24px;
     }
 
     .assinatura-nome {
-      font-size: 11pt;
-      font-weight: bold;
-      line-height: 1.2;
-      margin: 4px 0 3px;
+      font-size: 10pt;
+      margin-bottom: 2px;
     }
 
     .assinatura-dados {
@@ -650,76 +350,385 @@ function baixarWord() {
     .assinatura-aviso {
       font-size: 8pt;
       line-height: 1.1;
-      margin: 5px 0 0;
+      margin-top: 8px;
     }
-  `;
 
-  const copia = documento.cloneNode(true);
-  const observacoes = copia.querySelector("#secao-obs");
+    .rodape {
+      margin-top: 14px;
+      font-size: 8pt;
+    }
+  }
+</style>
+</head>
 
-  if (observacoes && !valor("obs")) {
-    observacoes.remove();
+<body>
+<div class="container">
+
+  <h1>Laudo de Perícia Médica Singular</h1>
+  <p class="subtitulo">
+    Preencha os dados da avaliação e confira o documento na prévia.
+    A impressão permite salvar o laudo em PDF.
+  </p>
+
+  <div class="layout">
+
+    <section class="painel">
+      <h2>Dados da perícia</h2>
+
+      <div class="campo">
+        <label for="nome">Servidor / Membro periciado</label>
+        <input id="nome" type="text" placeholder="Nome completo">
+      </div>
+
+      <div class="campo">
+        <label for="matricula">Matrícula</label>
+        <input id="matricula" type="text" placeholder="Matrícula funcional">
+      </div>
+
+      <div class="campo">
+        <label for="unidade">Unidade de origem</label>
+        <input id="unidade" type="text" placeholder="Unidade de lotação">
+      </div>
+
+      <div class="campo">
+        <label for="processo">Processo administrativo</label>
+        <input id="processo" type="text" placeholder="Número do processo">
+      </div>
+
+      <div class="campo">
+        <label for="data">Data da avaliação médica pericial</label>
+        <input id="data" type="date">
+      </div>
+
+      <div class="campo">
+        <label for="tipo">Tipo de afastamento</label>
+        <select id="tipo">
+          <option value="Licença para tratamento de saúde do próprio servidor (art. 202 da Lei nº 8.112/1990 e art. 223, I, da LC nº 75/1993)">
+            Licença para tratamento da própria saúde
+          </option>
+          <option value="Licença por motivo de acidente em serviço (arts. 211 e seguintes da Lei nº 8.112/1990 e art. 223, II, da LC nº 75/1993)">
+            Acidente em serviço
+          </option>
+          <option value="Licença por motivo de doença em pessoa da família (art. 83 e art. 222, § 1º, da Lei nº 8.112/1990)">
+            Tratamento de pessoa da família
+          </option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="resultado">Resultado da avaliação pericial</label>
+        <select id="resultado">
+          <option value="Período de Afastamento HOMOLOGADO">
+            Período de Afastamento HOMOLOGADO
+          </option>
+          <option value="Período de Afastamento INDEFERIDO">
+            Período de Afastamento INDEFERIDO
+          </option>
+          <option value="Período de Afastamento PARCIALMENTE HOMOLOGADO">
+            Período de Afastamento PARCIALMENTE HOMOLOGADO
+          </option>
+          <option value="Período de Afastamento PRORROGADO E HOMOLOGADO">
+            Período de Afastamento PRORROGADO E HOMOLOGADO
+          </option>
+        </select>
+      </div>
+
+      <div class="linha">
+        <div class="campo">
+          <label for="inicio">Início do período homologado</label>
+          <input id="inicio" type="date">
+        </div>
+
+        <div class="campo">
+          <label for="fim">Fim do período homologado</label>
+          <input id="fim" type="date">
+        </div>
+      </div>
+
+      <p class="ajuda">
+        Para resultado indeferido, o período será indicado como “Não se aplica”.
+        Nos demais resultados, informe as datas correspondentes ao período reconhecido.
+      </p>
+
+      <div class="campo" style="margin-top:16px">
+        <label for="conclusao">Conclusão / parecer médico-pericial</label>
+        <textarea id="conclusao" placeholder="Digite a conclusão da avaliação pericial."></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="observacoes">Observações complementares (opcional)</label>
+        <textarea id="observacoes" placeholder="Informações adicionais, se necessárias."></textarea>
+      </div>
+
+      <div class="botoes">
+        <button class="primario" type="button" onclick="imprimirPDF()">
+          Imprimir / Salvar PDF
+        </button>
+        <button class="primario" type="button" onclick="baixarWord()">
+          Baixar Word
+        </button>
+        <button class="secundario" type="button" onclick="limpar()">
+          Limpar formulário
+        </button>
+      </div>
+
+      <div class="aviso">
+        <strong>Privacidade:</strong> os dados preenchidos são processados no próprio
+        navegador. Este modelo não implementa armazenamento em banco de dados.
+        Antes de usar, confira os dados e o conteúdo do laudo.
+      </div>
+    </section>
+
+    <section>
+      <div id="documento">
+
+        <header class="cabecalho">
+          <img
+            class="logo"
+            src="https://mpt.mp.br/logo.png"
+            alt="Logotipo do Ministério Público do Trabalho"
+            onerror="this.style.display='none'"
+          >
+          <p class="orgao">
+            PROCURADORIA REGIONAL DO TRABALHO DA 21ª REGIÃO
+          </p>
+        </header>
+
+        <h2 class="titulo-documento">Laudo de Perícia Médica Singular</h2>
+
+        <div class="identificacao">
+          <p><span class="rotulo">Servidor / Membro periciado: </span><span id="p-nome"></span></p>
+          <p><span class="rotulo">Matrícula: </span><span id="p-matricula"></span></p>
+          <p><span class="rotulo">Unidade de origem: </span><span id="p-unidade"></span></p>
+          <p><span class="rotulo">Processo administrativo: </span><span id="p-processo"></span></p>
+          <p><span class="rotulo">Data da avaliação médica pericial: </span><span id="p-data"></span></p>
+        </div>
+
+        <div class="secao">
+          <p class="secao-titulo">Tipo de afastamento</p>
+          <p class="secao-conteudo" id="p-tipo"></p>
+        </div>
+
+        <div class="status" id="p-resultado"></div>
+
+        <div class="secao">
+          <p class="secao-titulo">Período de afastamento</p>
+          <p class="secao-conteudo" id="p-periodo"></p>
+        </div>
+
+        <div class="secao">
+          <p class="secao-titulo">Conclusão / parecer médico-pericial</p>
+          <p class="secao-conteudo" id="p-conclusao"></p>
+        </div>
+
+        <div class="secao" id="secao-observacoes">
+          <p class="secao-titulo">Observações complementares</p>
+          <p class="secao-conteudo" id="p-observacoes"></p>
+        </div>
+
+        <div class="assinatura">
+          <p class="assinatura-nome" id="p-medico">Roberto Moreno Mendonça</p>
+          <p class="assinatura-dados" id="p-cargo">Analista Médico - Perito</p>
+          <p class="assinatura-dados" id="p-orgao">MPU / MPT - PRT21ª Região</p>
+          <p class="assinatura-dados" id="p-perito-matricula">Matrícula funcional: 6.005.167-1</p>
+          <p class="assinatura-dados" id="p-crm">CRM-RN 6.266</p>
+          <p class="assinatura-aviso">Assinatura eletrônica a ser aplicada separadamente.</p>
+        </div>
+
+        <div class="rodape">
+          Documento de avaliação médico-pericial
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  function valor(id) {
+    const elemento = document.getElementById(id);
+    return elemento ? elemento.value.trim() : "";
   }
 
-  const conteudo =
-    "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'>" +
-    "<style>" + estilos + "</style></head><body>" +
-    copia.outerHTML +
-    "</body></html>";
+  function dataBR(data) {
+    if (!data) return "";
+    const partes = data.split("-");
+    if (partes.length !== 3) return data;
+    return partes[2] + "/" + partes[1] + "/" + partes[0];
+  }
 
-  const blob = new Blob(["\ufeff", conteudo], {
-    type: "application/msword"
-  });
+  function preencher(id, texto) {
+    document.getElementById(id).textContent = texto || "";
+  }
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  function atualizar() {
+    preencher("p-nome", valor("nome"));
+    preencher("p-matricula", valor("matricula"));
+    preencher("p-unidade", valor("unidade"));
+    preencher("p-processo", valor("processo"));
+    preencher("p-data", dataBR(valor("data")));
+    preencher("p-tipo", valor("tipo"));
+    preencher("p-resultado", valor("resultado"));
+    preencher("p-conclusao", valor("conclusao"));
+    preencher("p-observacoes", valor("observacoes"));
 
-  link.href = url;
-  link.download = "relatorio-pericia-medica-singular.doc";
+    const resultado = valor("resultado");
+    const inicio = valor("inicio");
+    const fim = valor("fim");
 
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
+    if (resultado === "Período de Afastamento INDEFERIDO") {
+      preencher("p-periodo", "Não se aplica.");
+    } else if (inicio && fim) {
+      preencher("p-periodo", dataBR(inicio) + " a " + dataBR(fim));
+    } else if (inicio) {
+      preencher("p-periodo", "A partir de " + dataBR(inicio));
+    } else if (fim) {
+      preencher("p-periodo", "Até " + dataBR(fim));
+    } else {
+      preencher("p-periodo", "Não informado.");
+    }
 
-  setTimeout(function() {
-    URL.revokeObjectURL(url);
-  }, 1500);
-}
+    const observacoes = valor("observacoes");
+    document.getElementById("secao-observacoes").style.display =
+      observacoes ? "block" : "none";
+  }
 
-function iniciar() {
-  const data = campo("data");
+  function imprimirPDF() {
+    atualizar();
+    window.print();
+  }
 
-  if (data && !data.value) {
-    const agora = new Date();
-    const local = new Date(
-      agora.getTime() - agora.getTimezoneOffset() * 60000
+  function baixarWord() {
+    atualizar();
+
+    const conteudo = document.getElementById("documento").innerHTML;
+
+    const estilos = `
+      <html xmlns:o="urn:schemas-microsoft-com:office:office"
+            xmlns:w="urn:schemas-microsoft-com:office:word"
+            xmlns="http://www.w3.org/TR/REC-html40">
+      <head>
+        <meta charset="utf-8">
+        <title>Laudo de Perícia Médica Singular</title>
+        <style>
+          @page { size: 21cm 29.7cm; margin: 1.5cm; }
+          body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10pt;
+            line-height: 1.25;
+            color: #000;
+          }
+          .cabecalho { text-align: center; margin-bottom: 14px; }
+          .logo {
+            display: block;
+            max-width: 90px;
+            max-height: 48px;
+            margin: 0 auto 6px;
+          }
+          .orgao {
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+          }
+          .titulo-documento {
+            text-align: center;
+            font-size: 12pt;
+            margin: 14px 0;
+            text-transform: uppercase;
+          }
+          .identificacao p { margin: 3px 0; }
+          .rotulo, .secao-titulo { font-weight: bold; }
+          .status {
+            border: 1px solid #999;
+            padding: 7px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+          }
+          .secao { margin-top: 10px; }
+          .secao-conteudo { white-space: pre-wrap; }
+          .assinatura {
+            margin-top: 24px;
+            text-align: center;
+          }
+          .assinatura-nome {
+            font-size: 11pt;
+            font-weight: bold;
+            margin: 0 0 2px;
+          }
+          .assinatura-dados {
+            font-size: 8pt;
+            line-height: 1.1;
+            margin: 1px 0;
+          }
+          .assinatura-aviso {
+            font-size: 8pt;
+            line-height: 1.1;
+            margin-top: 8px;
+          }
+          .rodape {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 8pt;
+          }
+        </style>
+      </head>
+      <body>${conteudo}</body>
+      </html>`;
+
+    const arquivo = new Blob(
+      ["\ufeff", estilos],
+      { type: "application/msword;charset=utf-8" }
     );
 
-    data.value = local.toISOString().slice(0, 10);
+    const url = URL.createObjectURL(arquivo);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Laudo_Pericia_Medica_Singular.doc";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    setTimeout(function() {
+      URL.revokeObjectURL(url);
+    }, 1000);
   }
 
-  idsFormulario.forEach(function(id) {
-    const el = campo(id);
+  function limpar() {
+    if (!confirm("Deseja limpar todos os campos preenchidos?")) return;
 
-    if (el) {
-      el.addEventListener("input", atualizar);
-      el.addEventListener("change", atualizar);
-    }
-  });
+    document.getElementById("nome").value = "";
+    document.getElementById("matricula").value = "";
+    document.getElementById("unidade").value = "";
+    document.getElementById("processo").value = "";
+    document.getElementById("tipo").selectedIndex = 0;
+    document.getElementById("resultado").selectedIndex = 0;
+    document.getElementById("inicio").value = "";
+    document.getElementById("fim").value = "";
+    document.getElementById("conclusao").value = "";
+    document.getElementById("observacoes").value = "";
 
-  campo("btn-imprimir").addEventListener("click", imprimirPDF);
-  campo("btn-word").addEventListener("click", baixarWord);
-  campo("btn-limpar").addEventListener("click", limpar);
+    definirDataHoje();
+    atualizar();
+  }
 
+  function definirDataHoje() {
+    const hoje = new Date();
+    const ano = hoje.getFullYear();
+    const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+    const dia = String(hoje.getDate()).padStart(2, "0");
+    document.getElementById("data").value = ano + "-" + mes + "-" + dia;
+  }
+
+  document.querySelectorAll("#nome, #matricula, #unidade, #processo, #data, #tipo, #resultado, #inicio, #fim, #conclusao, #observacoes")
+    .forEach(function(elemento) {
+      elemento.addEventListener("input", atualizar);
+      elemento.addEventListener("change", atualizar);
+    });
+
+  definirDataHoje();
   atualizar();
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", iniciar);
-} else {
-  iniciar();
-}
 </script>
-
 </body>
 </html>
