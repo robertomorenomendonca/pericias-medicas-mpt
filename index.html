@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perícias Médicas — MPT</title>
+<style>
+*{box-sizing:border-box}
+body{font:14px Arial,sans-serif;color:#222;background:#f2f5f9;margin:0}
+header{background:#17365d;color:white;padding:18px;text-align:center}
+main{max-width:1050px;margin:22px auto;padding:0 14px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.panel{background:white;border:1px solid #d5dde7;border-radius:10px;padding:18px}
+h2{color:#17365d;font-size:19px;margin:0 0 14px}
+label{display:block;font-weight:bold;font-size:12px;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:9px;border:1px solid #bac7d5;border-radius:5px;font:inherit}
+textarea{min-height:65px}
+button{background:#245a87;color:white;border:0;border-radius:5px;padding:10px 12px;cursor:pointer;margin:10px 5px 0 0}
+.secondary{background:#e6edf5;color:#17365d}
+#documento{padding:20px;background:white;border:1px solid #ddd;font-size:12px}
+.cabecalho{text-align:center;border-bottom:2px solid #17365d;padding-bottom:9px;margin-bottom:15px}
+.logo{width:76px;height:auto;max-height:65px;object-fit:contain}
+.cabecalho h2{font-size:14px;margin:5px}
+.cabecalho p{margin:3px;font-size:11px}
+.titulo{text-align:center;font-weight:bold;margin:18px 0}
+.linha{margin:8px 0;overflow-wrap:anywhere}
+.status{text-align:center;font-weight:bold;border:1px solid #aaa;padding:7px;margin:12px 0}
+.secao{margin-top:15px}
+.secao h3{font-size:11px;text-transform:uppercase;color:#17365d}
+.secao p{white-space:pre-wrap}
+.assinatura{text-align:center;margin-top:28px;font-size:11px}
+.rodape{text-align:center;color:#666;font-size:11px;margin:20px}
+@media(max-width:800px){main{grid-template-columns:1fr}}
+@page{size:A4 portrait;margin:10mm}
+@media print{
+ body{background:white;font-size:9pt}
+ header,.formulario,.instrucoes,.rodape{display:none!important}
+ main{display:block;margin:0;padding:0;max-width:none}
+ .panel{border:0;padding:0}
+ #documento{border:0;padding:0;font-size:9pt}
+ .cabecalho{padding-bottom:5px;margin-bottom:9px}
+ .logo{width:60px;max-height:50px}
+ .linha{margin:5px 0}
+ .secao{margin-top:9px}
+ .assinatura{margin-top:20px}
+ .paginas{display:block!important}
+}
+.paginas{display:none;position:fixed;bottom:0;right:0;font-size:8pt}
+</style>
+</head>
+<body>
+<header>
+ <h1>Perícias Médicas — MPT</h1>
+ <p>Gerador de Relatório de Perícia Médica Singular</p>
+</header>
+<main>
+<section class="panel formulario">
+<h2>Dados da perícia</h2>
+<label>Nome da pessoa examinada</label>
+<input id="nome" oninput="atualizar()">
+
+<label>Unidade de origem</label>
+<input id="unidade" list="unidades" placeholder="Ex.: PRT 21ª Região, PGT, PRT 18ª Região" oninput="atualizar()">
+<datalist id="unidades">
+<option value="PRT 21ª Região"><option value="PGT">
+<option value="PRT 18ª Região"><option value="Outra">
+</datalist>
+
+<label>Matrícula / identificador funcional</label>
+<input id="matricula" oninput="atualizar()">
+
+<label>Processo administrativo</label>
+<input id="processo" oninput="atualizar()">
+
+<label>Data da perícia</label>
+<input id="data" type="date" onchange="atualizar()">
+
+<label>Tipo de afastamento</label>
+<select id="tipo" onchange="atualizar()">
+<option value="">Selecione...</option>
+<option>Licença para tratamento de Saúde (art. 202 da Lei nº 8.112/90 e art. 223, inciso I, da Lei Complementar nº 75/93)</option>
+<option>Licença por acidente em serviço (art. 211 e seguintes da Lei nº 8.112/90 e art. 223, inciso II, da Lei Complementar nº 75/93)</option>
+<option>Licença para tratamento de pessoa da família (art. 83 da Lei nº 8.112/90 e art. 222, § 1º, da Lei Complementar nº 75/93)</option>
+</select>
+
+<label>Resultado</label>
+<select id="resultado" onchange="atualizar()">
+<option>Homologada</option><option>Não homologada</option>
+</select>
+
+<label>Início do período homologado</label>
+<input id="inicio" type="date" onchange="atualizar()">
+
+<label>Fim do período homologado</label>
+<input id="fim" type="date" onchange="atualizar()">
+
+<label>Conclusão pericial</label>
+<textarea id="conclusao" oninput="atualizar()"></textarea>
+
+<label>Observações adicionais</label>
+<textarea id="obs" oninput="atualizar()"></textarea>
+
+<label>Nome do médico perito</label>
+<input id="medico" oninput="atualizar()">
+
+<label>CRM / UF</label>
+<input id="crm" placeholder="CRM-UF" oninput="atualizar()">
+
+<div>
+<button onclick="window.print()">Imprimir / Salvar PDF</button>
+<button class="secondary" onclick="baixarWord()">Baixar Word</button>
+<button class="secondary" onclick="limpar()">Limpar formulário</button>
+</div>
+<p class="instrucoes">Para assinar o PDF, utilize uma ferramenta de assinatura compatível com o SERPROID. Esta página não realiza a assinatura digital.</p>
+<p><a href="https://mpt.mp.br/logo.png" target="_blank">Logo oficial do MPT</a> · <a href="https://serproid.serpro.gov.br/" target="_blank">SERPROID</a></p>
+</section>
+
+<section class="panel">
+<h2 class="instrucoes">Pré-visualização do relatório</h2>
+<article id="documento">
+<div class="cabecalho">
+<img class="logo" src="https://mpt.mp.br/logo.png" alt="Logo do MPT">
+<p><b>PROCURADORIA REGIONAL DO TRABALHO DA 21ª REGIÃO</b></p>
+</div>
+<div class="titulo">RELATÓRIO DE PERÍCIA MÉDICA SINGULAR</div>
+<div class="linha"><b>Pessoa examinada:</b> <span id="p-nome">—</span></div>
+<div class="linha"><b>Unidade de origem:</b> <span id="p-unidade">—</span></div>
+<div class="linha"><b>Matrícula:</b> <span id="p-matricula">—</span></div>
+<div class="linha"><b>Processo administrativo:</b> <span id="p-processo">—</span></div>
+<div class="linha"><b>Data da perícia:</b> <span id="p-data">—</span></div>
+<div class="status" id="p-resultado">HOMOLOGADA</div>
+<div class="linha"><b>Tipo de afastamento:</b> <span id="p-tipo">—</span></div>
+<div class="linha"><b>Período homologado:</b> <span id="p-periodo">Não informado</span></div>
+<div class="secao"><h3>Conclusão pericial</h3><p id="p-conclusao">—</p></div>
+<div class="secao" id="secao-obs"><h3>Observações adicionais</h3><p id="p-obs">—</p></div>
+<div class="assinatura">
+<p>________________________________________</p>
+<p><b id="p-medico">Médico Perito</b></p>
+<p>CRM: <span id="p-crm">—</span></p>
+<p>Assinatura eletrônica a ser aplicada separadamente.</p>
+</div>
+<div class="paginas">Pág. 1/1</div>
+</article>
+</section>
+</main>
+<p class="rodape">Protótipo de apoio. Validar a redação e o uso institucional antes de utilizar em perícias reais.</p>
+<script>
+const ids=["nome","unidade","matricula","processo","data","tipo","resultado","inicio","fim","conclusao","obs","medico","crm"];
+function dataBR(v){
+ if(!v)return "";
+ const p=v.split("-");
+ return p[2]+"/"+p[1]+"/"+p[0];
+}
+function atualizar(){
+ ["nome","unidade","matricula","processo","tipo","conclusao","obs","medico","crm"].forEach(id=>{
+  document.getElementById("p-"+id).textContent=document.getElementById(id).value.trim()||"—";
+ });
+ document.getElementById("p-data").textContent=dataBR(document.getElementById("data").value)||"—";
+ const r=document.getElementById("resultado").value;
+ document.getElementById("p-resultado").textContent=r.toUpperCase();
+ const a=dataBR(document.getElementById("inicio").value);
+ const b=dataBR(document.getElementById("fim").value);
+ document.getElementById("p-periodo").textContent=r==="Não homologada"?"Não se aplica":(a||b?(a||"—")+" a "+(b||"—"):"Não informado");
+ document.getElementById("secao-obs").style.display=document.getElementById("obs").value.trim()?"":"none";
+}
+function limpar(){
+ if(confirm("Limpar todos os campos?")){
+  ids.forEach(id=>document.getElementById(id).value="");
+  document.getElementById("resultado").value="Homologada";
+  atualizar();
+ }
+}
+function baixarWord(){
+ atualizar();
+ const conteudo="<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>"+document.getElementById("documento").outerHTML+"</body></html>";
+ const blob=new Blob(["\ufeff",conteudo],{type:"application/msword"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="relatorio-pericia-medica-singular.doc";
+ a.click();
+ URL.revokeObjectURL(a.href);
+}
+document.getElementById("data").value=new Date().toISOString().slice(0,10);
+atualizar();
+</script>
+</body>
+</html>
