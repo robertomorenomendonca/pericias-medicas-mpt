@@ -148,48 +148,135 @@ button{background:#245a87;color:white;border:0;border-radius:5px;padding:10px 12
 </main>
 <p class="rodape">Protótipo de apoio. Validar a redação e o uso institucional antes de utilizar em perícias reais.</p>
 <script>
-const ids=["nome","unidade","matricula","processo","data","tipo","resultado","inicio","fim","conclusao","obs","medico","crm"];
-function dataBR(v){
- if(!v)return "";
- const p=v.split("-");
- return p[2]+"/"+p[1]+"/"+p[0];
-}
-function atualizar(){
- ["nome","unidade","matricula","processo","tipo","conclusao","obs","medico","crm"].forEach(id=>{
-  document.getElementById("p-"+id).textContent=document.getElementById(id).value.trim()||"—";
- });
- document.getElementById("p-data").textContent=dataBR(document.getElementById("data").value)||"—";
- const r=document.getElementById("resultado").value;
- document.getElementById("p-resultado").textContent=r.toUpperCase();
- const a=dataBR(document.getElementById("inicio").value);
- const b=dataBR(document.getElementById("fim").value);
- document.getElementById("p-periodo").textContent=r==="Não homologada"?"Não se aplica":(a||b?(a||"—")+" a "+(b||"—"):"Não informado");
- document.getElementById("secao-obs").style.display=document.getElementById("obs").value.trim()?"":"none";
-}
-function limpar(){
- if(confirm("Limpar todos os campos?")){
-  ids.filter(id=>id!=="medico" && id!=="crm")
-     .forEach(id=>document.getElementById(id).value="");
+const ids = [
+  "nome", "unidade", "matricula", "processo", "data",
+  "tipo", "resultado", "inicio", "fim", "conclusao",
+  "obs", "medico", "crm"
+];
 
-  document.getElementById("medico").value="Roberto Moreno";
-  document.getElementById("crm").value="6.266 - RN";
-  document.getElementById("resultado").value="Homologada";
+function elemento(id) {
+  return document.getElementById(id);
+}
+
+function valor(id) {
+  const campo = elemento(id);
+  return campo ? campo.value.trim() : "";
+}
+
+function escrever(id, texto) {
+  const destino = elemento(id);
+  if (destino) destino.textContent = texto || "—";
+}
+
+function dataBR(v) {
+  if (!v) return "";
+  const p = v.split("-");
+  return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : v;
+}
+
+function atualizar() {
+  escrever("p-nome", valor("nome"));
+  escrever("p-unidade", valor("unidade"));
+  escrever("p-matricula", valor("matricula"));
+  escrever("p-processo", valor("processo"));
+  escrever("p-data", dataBR(valor("data")));
+  escrever("p-tipo", valor("tipo"));
+  escrever("p-conclusao", valor("conclusao"));
+  escrever("p-obs", valor("obs"));
+
+  escrever("p-medico", "Roberto Moreno");
+  escrever("p-crm", "6.266 - RN");
+
+  const resultado = valor("resultado") || "Homologada";
+  escrever("p-resultado", resultado.toUpperCase());
+
+  const inicio = dataBR(valor("inicio"));
+  const fim = dataBR(valor("fim"));
+
+  let periodo = "Não informado";
+  if (resultado === "Não homologada") {
+    periodo = "Não se aplica";
+  } else if (inicio || fim) {
+    periodo = (inicio || "—") + " a " + (fim || "—");
+  }
+  escrever("p-periodo", periodo);
+
+  const secaoObs = elemento("secao-obs");
+  if (secaoObs) {
+    secaoObs.style.display = valor("obs") ? "" : "none";
+  }
+}
+
+function limpar() {
+  if (!confirm("Limpar os dados desta perícia?")) return;
+
+  ids.forEach(function(id) {
+    const campo = elemento(id);
+    if (campo && id !== "medico" && id !== "crm") {
+      campo.value = "";
+    }
+  });
+
+  if (elemento("medico")) elemento("medico").value = "Roberto Moreno";
+  if (elemento("crm")) elemento("crm").value = "6.266 - RN";
+  if (elemento("resultado")) elemento("resultado").value = "Homologada";
 
   atualizar();
- }
 }
-function baixarWord(){
- atualizar();
- const conteudo="<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>"+document.getElementById("documento").outerHTML+"</body></html>";
- const blob=new Blob(["\ufeff",conteudo],{type:"application/msword"});
- const a=document.createElement("a");
- a.href=URL.createObjectURL(blob);
- a.download="relatorio-pericia-medica-singular.doc";
- a.click();
- URL.revokeObjectURL(a.href);
+
+function baixarWord() {
+  atualizar();
+
+  const documento = elemento("documento");
+  if (!documento) {
+    alert("Não foi possível localizar o relatório.");
+    return;
+  }
+
+  const conteudo =
+    "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>" +
+    documento.outerHTML +
+    "</body></html>";
+
+  const blob = new Blob(["\ufeff", conteudo], {
+    type: "application/msword"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "relatorio-pericia-medica-singular.doc";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  setTimeout(function() {
+    URL.revokeObjectURL(url);
+  }, 1000);
 }
-document.getElementById("data").value=new Date().toISOString().slice(0,10);
-atualizar();
+
+document.addEventListener("DOMContentLoaded", function() {
+  ids.forEach(function(id) {
+    const campo = elemento(id);
+    if (campo && id !== "medico" && id !== "crm") {
+      campo.addEventListener("input", atualizar);
+      campo.addEventListener("change", atualizar);
+    }
+  });
+
+  if (elemento("medico")) elemento("medico").value = "Roberto Moreno";
+  if (elemento("crm")) elemento("crm").value = "6.266 - RN";
+
+  if (elemento("data") && !elemento("data").value) {
+    const agora = new Date();
+    const local = new Date(
+      agora.getTime() - agora.getTimezoneOffset() * 60000
+    );
+    elemento("data").value = local.toISOString().slice(0, 10);
+  }
+
+  atualizar();
+});
 </script>
 </body>
 </html>
