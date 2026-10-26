@@ -159,6 +159,7 @@ button:hover { opacity: .9; }
   min-height: 14px;
 }
 
+/* Identificação do perito */
 .assinatura {
   text-align: center;
   margin-top: 32px;
@@ -166,7 +167,24 @@ button:hover { opacity: .9; }
   break-inside: avoid;
 }
 
-.assinatura p { margin: 4px 0; }
+.assinatura-nome {
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 4px 0 3px;
+}
+
+.assinatura-dados {
+  font-size: 8pt;
+  line-height: 1.1;
+  margin: 1px 0;
+}
+
+.assinatura-aviso {
+  font-size: 8pt;
+  line-height: 1.1;
+  margin: 5px 0 0;
+}
 
 .rodape {
   text-align: center;
@@ -197,7 +215,6 @@ button:hover { opacity: .9; }
     width: 100% !important;
   }
 
-  /* Oculta a interface e mantém visível apenas o relatório. */
   body * {
     visibility: hidden !important;
   }
@@ -224,6 +241,7 @@ button:hover { opacity: .9; }
   #documento .cabecalho {
     padding-bottom: 6px;
     margin-bottom: 10px;
+    border-color: #333;
   }
 
   #documento .logo {
@@ -241,6 +259,26 @@ button:hover { opacity: .9; }
 
   #documento .assinatura {
     margin-top: 28px;
+    break-inside: avoid;
+  }
+
+  #documento .assinatura-nome {
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    line-height: 1.2 !important;
+    margin: 4px 0 3px !important;
+  }
+
+  #documento .assinatura-dados {
+    font-size: 8pt !important;
+    line-height: 1.1 !important;
+    margin: 1px 0 !important;
+  }
+
+  #documento .assinatura-aviso {
+    font-size: 8pt !important;
+    line-height: 1.1 !important;
+    margin: 5px 0 0 !important;
   }
 
   #documento .status {
@@ -250,10 +288,6 @@ button:hover { opacity: .9; }
 
   #documento .secao h3 {
     color: black;
-  }
-
-  #documento .cabecalho {
-    border-color: #333;
   }
 
   #documento .paginas {
@@ -275,8 +309,11 @@ button:hover { opacity: .9; }
 <section class="panel formulario">
   <h2>Dados da perícia</h2>
 
-  <label for="nome">Nome da pessoa examinada</label>
+  <label for="nome">Servidor / Membro periciado</label>
   <input id="nome" autocomplete="off">
+
+  <label for="matricula">Matrícula / identificador funcional</label>
+  <input id="matricula" autocomplete="off">
 
   <label for="unidade">Unidade de origem</label>
   <input id="unidade" list="unidades"
@@ -288,13 +325,10 @@ button:hover { opacity: .9; }
     <option value="Outra">
   </datalist>
 
-  <label for="matricula">Matrícula / identificador funcional da pessoa examinada</label>
-  <input id="matricula" autocomplete="off">
-
   <label for="processo">Processo administrativo</label>
   <input id="processo" autocomplete="off">
 
-  <label for="data">Data da perícia</label>
+  <label for="data">Data da avaliação médica pericial</label>
   <input id="data" type="date">
 
   <label for="tipo">Tipo de afastamento</label>
@@ -369,16 +403,42 @@ button:hover { opacity: .9; }
 
     <div class="titulo">RELATÓRIO DE PERÍCIA MÉDICA SINGULAR</div>
 
-    <div class="linha"><b>Pessoa examinada:</b> <span id="p-nome">—</span></div>
-    <div class="linha"><b>Unidade de origem:</b> <span id="p-unidade">—</span></div>
-    <div class="linha"><b>Matrícula da pessoa examinada:</b> <span id="p-matricula">—</span></div>
-    <div class="linha"><b>Processo administrativo:</b> <span id="p-processo">—</span></div>
-    <div class="linha"><b>Data da perícia:</b> <span id="p-data">—</span></div>
+    <div class="linha">
+      <b>Servidor / Membro periciado:</b>
+      <span id="p-nome">—</span>
+    </div>
+
+    <div class="linha">
+      <b>Matrícula:</b>
+      <span id="p-matricula">—</span>
+    </div>
+
+    <div class="linha">
+      <b>Unidade de origem:</b>
+      <span id="p-unidade">—</span>
+    </div>
+
+    <div class="linha">
+      <b>Processo administrativo:</b>
+      <span id="p-processo">—</span>
+    </div>
+
+    <div class="linha">
+      <b>Data da avaliação médica pericial:</b>
+      <span id="p-data">—</span>
+    </div>
 
     <div class="status" id="p-resultado">HOMOLOGADA</div>
 
-    <div class="linha"><b>Tipo de afastamento:</b> <span id="p-tipo">—</span></div>
-    <div class="linha"><b>Período homologado:</b> <span id="p-periodo">Não informado</span></div>
+    <div class="linha">
+      <b>Tipo de afastamento:</b>
+      <span id="p-tipo">—</span>
+    </div>
+
+    <div class="linha">
+      <b>Período homologado:</b>
+      <span id="p-periodo">Não informado</span>
+    </div>
 
     <div class="secao">
       <h3>Conclusão pericial</h3>
@@ -392,12 +452,30 @@ button:hover { opacity: .9; }
 
     <div class="assinatura">
       <p>________________________________________</p>
-      <p><b id="p-medico">Roberto Moreno Mendonça</b></p>
-      <p id="p-cargo">Analista Médico - Perito</p>
-      <p id="p-orgao">MPU / MPT - PRT21ª Região</p>
-      <p>Matrícula: <span id="p-perito-matricula">6.005.167-1</span></p>
-      <p>CRM-RN: <span id="p-crm">6.266</span></p>
-      <p>Assinatura eletrônica a ser aplicada separadamente.</p>
+
+      <p class="assinatura-nome" id="p-medico">
+        Roberto Moreno Mendonça
+      </p>
+
+      <p class="assinatura-dados" id="p-cargo">
+        Analista Médico - Perito
+      </p>
+
+      <p class="assinatura-dados" id="p-orgao">
+        MPU / MPT - PRT21ª Região
+      </p>
+
+      <p class="assinatura-dados">
+        Matrícula: <span id="p-perito-matricula">6.005.167-1</span>
+      </p>
+
+      <p class="assinatura-dados">
+        CRM-RN: <span id="p-crm">6.266</span>
+      </p>
+
+      <p class="assinatura-aviso">
+        Assinatura eletrônica a ser aplicada separadamente.
+      </p>
     </div>
   </article>
 </section>
@@ -413,7 +491,7 @@ button:hover { opacity: .9; }
 "use strict";
 
 const idsFormulario = [
-  "nome", "unidade", "matricula", "processo", "data",
+  "nome", "matricula", "unidade", "processo", "data",
   "tipo", "resultado", "inicio", "fim", "conclusao", "obs"
 ];
 
@@ -435,22 +513,24 @@ function escrever(id, texto) {
 
 function dataBR(valorData) {
   if (!valorData) return "";
+
   const partes = valorData.split("-");
   if (partes.length !== 3) return valorData;
+
   return partes[2] + "/" + partes[1] + "/" + partes[0];
 }
 
 function atualizar() {
   escrever("p-nome", valor("nome"));
-  escrever("p-unidade", valor("unidade"));
   escrever("p-matricula", valor("matricula"));
+  escrever("p-unidade", valor("unidade"));
   escrever("p-processo", valor("processo"));
   escrever("p-data", dataBR(valor("data")));
   escrever("p-tipo", valor("tipo"));
   escrever("p-conclusao", valor("conclusao"));
   escrever("p-obs", valor("obs"));
 
-  escrever("p-medico", valor("medico") || "Roberto Moreno Mendonça");
+  escrever("p-medico", "Roberto Moreno Mendonça");
   escrever("p-crm", "6.266");
   escrever("p-perito-matricula", "6.005.167-1");
   escrever("p-cargo", "Analista Médico - Perito");
@@ -502,27 +582,84 @@ function baixarWord() {
   atualizar();
 
   const documento = campo("documento");
+
   if (!documento) {
     alert("Não foi possível localizar o relatório.");
     return;
   }
 
   const estilos = `
-    body { font-family: Arial, sans-serif; color: #222; font-size: 11pt; }
-    .cabecalho { text-align: center; border-bottom: 2px solid #17365d; padding-bottom: 8px; }
+    body {
+      font-family: Arial, sans-serif;
+      color: #222;
+      font-size: 11pt;
+    }
+
+    .cabecalho {
+      text-align: center;
+      border-bottom: 2px solid #17365d;
+      padding-bottom: 8px;
+    }
+
     .logo { width: 65px; }
-    .titulo { text-align: center; font-weight: bold; margin: 18px 0; }
+
+    .titulo {
+      text-align: center;
+      font-weight: bold;
+      margin: 18px 0;
+    }
+
     .linha { margin: 8px 0; }
-    .status { text-align: center; font-weight: bold; border: 1px solid #aaa; padding: 7px; margin: 12px 0; }
+
+    .status {
+      text-align: center;
+      font-weight: bold;
+      border: 1px solid #aaa;
+      padding: 7px;
+      margin: 12px 0;
+    }
+
     .secao { margin-top: 14px; }
-    .secao h3 { font-size: 10pt; text-transform: uppercase; }
+
+    .secao h3 {
+      font-size: 10pt;
+      text-transform: uppercase;
+    }
+
     .secao p { white-space: pre-wrap; }
-    .assinatura { text-align: center; margin-top: 28px; font-size: 10pt; }
+
+    .assinatura {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 11pt;
+    }
+
+    .assinatura-nome {
+      font-size: 11pt;
+      font-weight: bold;
+      line-height: 1.2;
+      margin: 4px 0 3px;
+    }
+
+    .assinatura-dados {
+      font-size: 8pt;
+      line-height: 1.1;
+      margin: 1px 0;
+    }
+
+    .assinatura-aviso {
+      font-size: 8pt;
+      line-height: 1.1;
+      margin: 5px 0 0;
+    }
   `;
 
   const copia = documento.cloneNode(true);
   const observacoes = copia.querySelector("#secao-obs");
-  if (observacoes && !valor("obs")) observacoes.remove();
+
+  if (observacoes && !valor("obs")) {
+    observacoes.remove();
+  }
 
   const conteudo =
     "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'>" +
@@ -536,8 +673,10 @@ function baixarWord() {
 
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
+
   link.href = url;
   link.download = "relatorio-pericia-medica-singular.doc";
+
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -549,16 +688,19 @@ function baixarWord() {
 
 function iniciar() {
   const data = campo("data");
+
   if (data && !data.value) {
     const agora = new Date();
     const local = new Date(
       agora.getTime() - agora.getTimezoneOffset() * 60000
     );
+
     data.value = local.toISOString().slice(0, 10);
   }
 
   idsFormulario.forEach(function(id) {
     const el = campo(id);
+
     if (el) {
       el.addEventListener("input", atualizar);
       el.addEventListener("change", atualizar);
